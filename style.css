@@ -1,0 +1,150 @@
+/* ESTILO GENERAL */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #e6e6e6, #f0f0f0);
+    color: #333;
+    line-height: 1.6;
+}
+
+/* NAVBAR */
+.navbar {
+    background: linear-gradient(90deg, #2f6ea5, #4a90e2);
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 16px;
+    transition: background 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+}
+
+.navbar a:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-2px);
+}
+
+/* CONTENIDO */
+main {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* CAJAS */
+.hero,
+.site-section,
+.caja-clima {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* HERO */
+.hero {
+    padding: 40px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #2f6ea5;
+}
+
+/* TARJETAS DE SITIOS */
+.site-entry {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    border-left: 5px solid #4a90e2;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.site-entry:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+/* IMÁGENES */
+.site-entry img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+    margin: 10px 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease;
+}
+
+.site-entry img:hover {
+    transform: scale(1.05);
+}
+
+.site-entry figure {
+    text-align: center;
+}
+
+/* CLIMA */
+.caja-clima {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    border-top: 5px solid #4a90e2;
+}
+
+.temp {
+    font-size: 4em;
+    font-weight: bold;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #2f6ea5;
+    color: white;
+    margin-top: 400px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    .navbar a {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+
+    .hero,
+    .site-section {
+        padding: 20px;
+    }
+}
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
