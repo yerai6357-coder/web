@@ -1,161 +1,317 @@
-/* ESTILO GENERAL */
-html, body {
-    height: 100%;
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
+/* BODY */
 body {
-    margin: 0;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #e6e6e6, #f0f0f0);
+    background:
+        radial-gradient(circle at top, rgba(74, 144, 226, 0.18), transparent 35%),
+        linear-gradient(135deg, #e6e6e6, #f0f0f0);
     color: #333;
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
 /* NAVBAR */
 .navbar {
     background: linear-gradient(90deg, #2f6ea5, #4a90e2);
-    padding: 15px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    padding: 15px 18px;
     display: flex;
     justify-content: center;
     gap: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+    backdrop-filter: blur(8px);
 }
 
 .navbar a {
     color: white;
     text-decoration: none;
-    padding: 12px 25px;
-    border-radius: 25px;
+    padding: 10px 20px;
+    border-radius: 20px;
     font-weight: bold;
-    font-size: 16px;
-    transition: background 0.3s ease, transform 0.2s ease;
-    display: inline-block;
+    transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+    will-change: transform;
 }
 
 .navbar a:hover {
-    background: rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.18);
     transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
 }
 
 /* CONTENIDO */
 main {
-    padding: 40px 20px;
-    max-width: 1200px;
-    margin: 0 auto;
     flex: 1;
+    width: min(1200px, calc(100% - 30px));
+    margin: 0 auto;
+    padding: 30px 0 40px;
 }
 
 /* CAJAS GENERALES */
 .hero,
 .site-section,
 .caja-clima {
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    background: rgba(255, 255, 255, 0.96);
+    border-radius: 18px;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.09);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+
+.hero:hover,
+.site-section:hover,
+.caja-clima:hover {
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.11);
 }
 
 /* HERO */
 .hero {
-    padding: 40px;
-    margin-bottom: 40px;
     text-align: center;
+    padding: 42px 28px;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
 }
 
-h1 {
-    font-size: 2.5em;
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(74, 144, 226, 0.08), transparent 55%);
+    pointer-events: none;
+}
+
+.hero h1 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    color: #2f6ea5;
+    margin-bottom: 10px;
+    letter-spacing: 0.2px;
+}
+
+.hero p {
+    max-width: 760px;
+    margin: 0 auto;
+    font-size: 1.05rem;
+    color: #444;
+}
+
+/* SECCIÓN */
+.site-section {
+    padding: 25px;
+    margin-bottom: 30px;
+}
+
+.site-section h2 {
+    text-align: center;
     margin-bottom: 20px;
     color: #2f6ea5;
+    font-size: 1.5rem;
 }
 
-/* TARJETAS DE SITIOS */
+/* TARJETAS */
 .site-entry {
-    margin-bottom: 20px;
+    background: linear-gradient(180deg, #fbfbfb, #f3f6fa);
     padding: 15px;
-    background: #f9f9f9;
-    border-radius: 10px;
+    border-radius: 14px;
     border-left: 5px solid #4a90e2;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-bottom: 15px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.site-entry::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(74, 144, 226, 0.08), transparent 45%);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    pointer-events: none;
 }
 
 .site-entry:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+    border-left-color: #2f6ea5;
+}
+
+.site-entry:hover::after {
+    opacity: 1;
+}
+
+/* LINKS */
+.btn-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.btn-link h3 {
+    margin: 0;
+    color: #222;
+    transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.btn-link:hover h3 {
+    color: #2f6ea5;
 }
 
 /* IMÁGENES */
 .site-entry img {
     width: 100%;
-    max-width: 400px;
-    border-radius: 10px;
-    margin: 10px 0;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    transition: transform 0.3s ease;
+    height: 220px;
+    object-fit: contain;
+    display: block;
+    background: linear-gradient(135deg, #f5f7fa, #e9eef5);
+    border-radius: 12px;
+    padding: 8px;
+    margin-bottom: 10px;
+    transition: transform 0.35s ease, filter 0.35s ease;
+    filter: saturate(1.03);
 }
 
-.site-entry img:hover {
-    transform: scale(1.05);
+.site-entry:hover img {
+    transform: scale(1.02);
+    filter: saturate(1.08);
 }
 
 .site-entry figure {
     text-align: center;
 }
 
+.site-entry figcaption {
+    margin-top: 8px;
+    font-size: 0.95rem;
+    color: #555;
+}
+
 /* CLIMA */
 .caja-clima {
-    max-width: 400px;
-    margin: 50px auto;
+    max-width: 700px;
+    margin: 40px auto;
     padding: 30px;
     border-top: 5px solid #4a90e2;
 }
 
+.ciudad {
+    text-align: center;
+    font-weight: bold;
+    font-size: 22px;
+    color: #2f6ea5;
+    margin-bottom: 10px;
+}
+
 .temp {
-    font-size: 4em;
+    text-align: center;
+    font-size: clamp(3rem, 8vw, 4.2rem);
+    font-weight: bold;
+    color: #1f2d3a;
+    letter-spacing: -1px;
+}
+
+.detalles {
+    display: flex;
+    justify-content: space-around;
+    gap: 16px;
+    margin-top: 15px;
+}
+
+.dato {
+    text-align: center;
+    flex: 1;
+    padding: 10px 8px;
+    border-radius: 12px;
+    background: rgba(74, 144, 226, 0.06);
+}
+
+.etiqueta {
+    display: block;
+    font-size: 14px;
+    opacity: 0.75;
+    margin-bottom: 4px;
+}
+
+/* BOTÓN RESET */
+.btn-reset {
+    display: block;
+    margin: 15px auto;
+    padding: 10px 20px;
+    border: none;
+    background: linear-gradient(90deg, #2f6ea5, #4a90e2);
+    color: white;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 8px 18px rgba(74, 144, 226, 0.18);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+
+.btn-reset:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 22px rgba(74, 144, 226, 0.24);
+    filter: brightness(1.03);
+}
+
+/* PRONÓSTICO */
+.pronostico-grid {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.card-dia {
+    background: linear-gradient(135deg, #4a90e2, #2f6ea5);
+    color: white;
+    border-radius: 14px;
+    padding: 14px 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+    box-shadow: 0 8px 16px rgba(47, 110, 165, 0.14);
+    user-select: none;
+}
+
+.card-dia:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 22px rgba(47, 110, 165, 0.2);
+    filter: brightness(1.03);
+}
+
+.card-dia.active {
+    outline: 2px solid white;
+    background: linear-gradient(135deg, #5aa0f2, #3578c9);
+    box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.14), 0 12px 22px rgba(47, 110, 165, 0.22);
+}
+
+.dia-nombre {
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.temp-max {
+    font-size: 18px;
     font-weight: bold;
 }
 
-/* BOTONES DE ENLACE */
-.btn-link{
-    display: block;
-    width: 100%;
-    padding: 15px;
-    text-decoration: none;
-    color: inherit;
-    border-radius: 10px;
-    transition: background 0.3s ease;
-}
-
-.btn-link h3{
-    margin: 0;
-    color: #333;
-}
-
-.btn-link:hover{
-    background-color:#4a90e2;
-    color:white;
-}
-
-.btn-link:hover h3{
-    color:white;
-}
-
-/* CAJA DONACIÓN */
-.donacion-box{
-    text-align:center;
-    margin-top:25px;
-    padding:25px;
-    background:#ffffff;
-    border-radius:12px;
-    max-width:420px;
-    margin-left:auto;
-    margin-right:auto;
-    box-shadow:0 4px 15px rgba(0,0,0,0.1);
-    border:2px solid #e6e6e6;
+.temp-min {
+    font-size: 14px;
+    opacity: 0.82;
 }
 
 /* FOOTER */
@@ -164,50 +320,1494 @@ footer {
     padding: 20px;
     background: #2f6ea5;
     color: white;
-    margin-top: 40px;
+    margin-top: auto;
 }
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
 
-    h1 {
-        font-size: 2em;
+    .hero {
+        padding: 30px 20px;
     }
 
-    .navbar a {
-        padding: 10px 15px;
-        font-size: 14px;
+    .hero h1 {
+        font-size: 2rem;
     }
 
-    .hero,
     .site-section {
         padding: 20px;
     }
 
+    .detalles {
+        flex-direction: column;
+    }
+
+    .pronostico-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .site-entry img {
+        height: 180px;
+    }
+
+    .caja-clima {
+        padding: 22px;
+    }
+}
+/* ===================================== */
+/* 🔥 EFECTO PREMIUM GLOBAL */
+/* ===================================== */
+
+/* Scroll suave + sensación fluida */
+body {
+    animation: fadeIn 0.6s ease;
 }
 
-.donacion-inline{
-display:flex;
-justify-content:center;
-align-items:center;
-gap:12px;
-margin-top:20px;
-font-size:15px;
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(10px);}
+    to {opacity: 1; transform: translateY(0);}
 }
 
-.btn-donar{
-background:#4a90e2;
-color:white;
-border:none;
-padding:10px 18px;
-border-radius:25px;
-cursor:pointer;
-font-weight:bold;
-font-size:14px;
-transition:all 0.3s ease;
+/* ===================================== */
+/* ✨ HERO MÁS PRO */
+/* ===================================== */
+.hero {
+    position: relative;
+    overflow: hidden;
 }
 
-.btn-donar:hover{
-background:#2f6ea5;
-transform:translateY(-2px);
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    background: radial-gradient(circle, rgba(74,144,226,0.15), transparent 60%);
+    animation: moverFondo 8s infinite linear;
+}
+
+@keyframes moverFondo {
+    0% { transform: rotate(0deg);}
+    100% { transform: rotate(360deg);}
+}
+
+/* ===================================== */
+/* 🧊 TARJETAS NIVEL APP */
+/* ===================================== */
+.site-entry {
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.4);
+}
+
+/* Brillo al pasar */
+.site-entry::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.5), transparent);
+    transition: 0.5s;
+}
+
+.site-entry:hover::before {
+    left: 120%;
+}
+
+/* ===================================== */
+/* 🖼️ IMÁGENES MÁS PREMIUM */
+/* ===================================== */
+.site-entry img {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* ===================================== */
+/* 🔘 BOTONES MÁS VIVOS */
+/* ===================================== */
+.btn-reset {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-reset::after {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.4), transparent);
+    top: -50%;
+    left: -50%;
+    opacity: 0;
+    transition: 0.4s;
+}
+
+.btn-reset:hover::after {
+    opacity: 1;
+}
+
+/* ===================================== */
+/* 🌤️ CLIMA MÁS VISUAL */
+/* ===================================== */
+.caja-clima {
+    position: relative;
+    overflow: hidden;
+}
+
+.caja-clima::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(74,144,226,0.1), transparent);
+    pointer-events: none;
+}
+
+/* ===================================== */
+/* 📅 PRONÓSTICO PRO */
+/* ===================================== */
+.card-dia {
+    position: relative;
+    overflow: hidden;
+}
+
+.card-dia::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, rgba(255,255,255,0.3), transparent);
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.card-dia:hover::after {
+    opacity: 1;
+}
+
+/* ===================================== */
+/* 🧠 MICROINTERACCIONES */
+/* ===================================== */
+
+/* Click efecto */
+button:active,
+.card-dia:active,
+.site-entry:active {
+    transform: scale(0.97);
+}
+
+/* Links más suaves */
+a {
+    transition: all 0.2s ease;
+}
+
+/* ===================================== */
+/* 💎 SOMBRAS MÁS REALISTAS */
+/* ===================================== */
+.hero,
+.site-section,
+.caja-clima {
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+}
+/* ===================================== */
+/* 💎 NIVEL DIOS VISUAL */
+/* ===================================== */
+
+/* Fondo dinámico premium */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at 20% 20%, rgba(74,144,226,0.15), transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(47,110,165,0.15), transparent 40%);
+    z-index: -1;
+    animation: fondoMove 12s infinite alternate ease-in-out;
+}
+
+@keyframes fondoMove {
+    0% {transform: scale(1);}
+    100% {transform: scale(1.2);}
+}
+
+/* ===================================== */
+/* ✨ NAVBAR GLASS PRO */
+/* ===================================== */
+.navbar {
+    backdrop-filter: blur(12px);
+    background: rgba(47,110,165,0.85);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* Glow al hover */
+.navbar a:hover {
+    box-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+/* ===================================== */
+/* 🧊 HERO ULTRA */
+/* ===================================== */
+.hero {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+    transform: translateX(-100%);
+    animation: brilloHero 4s infinite;
+}
+
+@keyframes brilloHero {
+    0% {transform: translateX(-100%);}
+    100% {transform: translateX(100%);}
+}
+
+/* ===================================== */
+/* 🧠 TARJETAS INTELIGENTES */
+/* ===================================== */
+.site-entry {
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+/* Efecto 3D suave */
+.site-entry:hover {
+    transform: rotateX(3deg) rotateY(-3deg) scale(1.02);
+}
+
+/* Sombra flotante */
+.site-entry::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 10%;
+    width: 80%;
+    height: 15px;
+    background: rgba(0,0,0,0.2);
+    filter: blur(10px);
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.site-entry:hover::after {
+    opacity: 1;
+}
+
+/* ===================================== */
+/* 🖼️ IMÁGENES NIVEL APP */
+/* ===================================== */
+.site-entry img {
+    border-radius: 12px;
+    background: linear-gradient(135deg, #f5f7fa, #e9eef5);
+    transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+/* Zoom suave tipo iOS */
+.site-entry:hover img {
+    transform: scale(1.05);
+    filter: brightness(1.05) contrast(1.05);
+}
+
+/* ===================================== */
+/* ✨ TEXTO MÁS VIVO */
+/* ===================================== */
+h1, h2, h3 {
+    letter-spacing: 0.5px;
+}
+
+/* ===================================== */
+/* 🔘 BOTONES PRO INTERACTIVOS */
+/* ===================================== */
+button {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efecto onda al click */
+button::after {
+    content: "";
+    position: absolute;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle, rgba(255,255,255,0.4), transparent);
+    top: -100%;
+    left: -100%;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+button:hover::after {
+    opacity: 1;
+}
+
+/* ===================================== */
+/* 🌤️ CLIMA PREMIUM PRO */
+/* ===================================== */
+.caja-clima {
+    backdrop-filter: blur(10px);
+    background: rgba(255,255,255,0.9);
+}
+
+/* ===================================== */
+/* 📅 PRONÓSTICO ANIMADO */
+/* ===================================== */
+.card-dia {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efecto luz */
+.card-dia::before {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+    top: -50%;
+    left: -50%;
+    transform: rotate(25deg);
+    opacity: 0;
+    transition: 0.4s;
+}
+
+.card-dia:hover::before {
+    opacity: 1;
+    animation: luzMove 1s forwards;
+}
+
+@keyframes luzMove {
+    from {transform: translateX(-100%) rotate(25deg);}
+    to {transform: translateX(100%) rotate(25deg);}
+}
+
+/* ===================================== */
+/* ⚡ MICROINTERACCIONES PRO */
+/* ===================================== */
+
+/* Click realista */
+button:active,
+.site-entry:active,
+.card-dia:active {
+    transform: scale(0.96);
+}
+
+/* Aparición en scroll */
+.hero,
+.site-section,
+.site-entry {
+    animation: aparecer 0.6s ease;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===================================== */
+/* 💎 EFECTO CRISTAL GLOBAL */
+/* ===================================== */
+.hero,
+.site-section,
+.caja-clima {
+    backdrop-filter: blur(12px);
+}
+
+/* ===================================== */
+/* 🔥 SCROLL PERSONALIZADO */
+/* ===================================== */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #e0e0e0;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(#4a90e2, #2f6ea5);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #2f6ea5;
+}
+/* ===================================== */
+/* 🧠 ULTRA PREMIUM REAL (nivel Apple) */
+/* ===================================== */
+
+/* Movimiento suave global */
+* {
+    transition: all 0.25s cubic-bezier(.4,0,.2,1);
+}
+
+/* Scroll más suave visualmente */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ===================================== */
+/* 💎 PROFUNDIDAD REAL (capas) */
+/* ===================================== */
+.hero,
+.site-section,
+.caja-clima {
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+/* Hover más natural (no exagerado) */
+.site-entry:hover {
+    transform: translateY(-6px) scale(1.01);
+}
+
+/* ===================================== */
+/* ✨ EFECTO “RESPIRA” (muy pro) */
+/* ===================================== */
+.hero {
+    animation: respirar 6s ease-in-out infinite;
+}
+
+@keyframes respirar {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.01); }
+}
+
+/* ===================================== */
+/* 🖼️ IMÁGENES NIVEL APP REAL */
+/* ===================================== */
+.site-entry img {
+    height: 220px;
+    object-fit: contain;
+    background: #f4f6f8;
+    border-radius: 14px;
+}
+
+/* Sombra interna elegante */
+.site-entry img {
+    box-shadow:
+        inset 0 1px 3px rgba(0,0,0,0.1),
+        0 8px 20px rgba(0,0,0,0.12);
+}
+
+/* ===================================== */
+/* 🧊 TARJETAS MÁS LIMPIAS */
+/* ===================================== */
+.site-entry {
+    border-left: none;
+    border: 1px solid rgba(0,0,0,0.06);
+}
+
+/* Línea animada premium */
+.site-entry::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 3px;
+    background: linear-gradient(#4a90e2, #2f6ea5);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: 0.3s;
+}
+
+.site-entry:hover::before {
+    transform: scaleY(1);
+}
+
+/* ===================================== */
+/* 🔘 BOTONES NIVEL GOOGLE */
+/* ===================================== */
+button {
+    border-radius: 999px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+/* Hover realista */
+button:hover {
+    transform: translateY(-1px);
+}
+
+/* ===================================== */
+/* 🌤️ CLIMA MÁS LIMPIO */
+/* ===================================== */
+.caja-clima {
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+/* ===================================== */
+/* 📅 PRONÓSTICO MÁS PRO */
+/* ===================================== */
+.card-dia {
+    border-radius: 16px;
+    font-weight: 500;
+}
+
+/* Animación suave al pasar */
+.card-dia:hover {
+    transform: translateY(-4px) scale(1.03);
+}
+
+/* ===================================== */
+/* 💡 EFECTO FOCO (muy premium) */
+/* ===================================== */
+.site-entry:hover {
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* ===================================== */
+/* 🧠 DETALLE PRO: TEXTO */
+/* ===================================== */
+body {
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ===================================== */
+/* 🎯 EFECTO SELECCIÓN */
+/* ===================================== */
+::selection {
+    background: #4a90e2;
+    color: white;
+}
+/* ===================================== */
+/* 🧠 NIVEL APP REAL (ULTRA PRO) */
+/* ===================================== */
+
+/* Animación entrada suave */
+body {
+    animation: entrada 0.6s ease;
+}
+
+@keyframes entrada {
+    from {opacity: 0; transform: translateY(15px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+/* ===================================== */
+/* 💎 TARJETAS MÁS REALISTAS */
+/* ===================================== */
+.site-entry {
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 16px;
+    background: white;
+    overflow: hidden;
+}
+
+/* Efecto profundidad */
+.site-entry:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.18);
+}
+
+/* Línea animada lateral */
+.site-entry::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(#4a90e2, #2f6ea5);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: 0.3s;
+}
+
+.site-entry:hover::before {
+    transform: scaleY(1);
+}
+
+/* ===================================== */
+/* 🖼️ IMÁGENES NIVEL APP */
+/* ===================================== */
+.site-entry img {
+    height: 220px;
+    object-fit: contain;
+    background: #f5f7fa;
+    border-radius: 12px;
+    padding: 10px;
+    transition: 0.4s;
+}
+
+/* Zoom suave tipo móvil */
+.site-entry:hover img {
+    transform: scale(1.04);
+}
+
+/* ===================================== */
+/* ✨ HERO MÁS VIVO */
+/* ===================================== */
+.hero {
+    position: relative;
+}
+
+/* Luz suave animada */
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, rgba(74,144,226,0.2), transparent 60%);
+    animation: luzHero 6s infinite alternate;
+}
+
+@keyframes luzHero {
+    0% {opacity: 0.3;}
+    100% {opacity: 0.6;}
+}
+
+/* ===================================== */
+/* 🔘 BOTONES NIVEL APP */
+/* ===================================== */
+button {
+    border-radius: 999px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+/* Click realista */
+button:active {
+    transform: scale(0.95);
+}
+
+/* ===================================== */
+/* 📅 PRONÓSTICO PREMIUM */
+/* ===================================== */
+.card-dia {
+    border-radius: 18px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* Hover más vivo */
+.card-dia:hover {
+    transform: translateY(-6px) scale(1.05);
+}
+
+/* ===================================== */
+/* 🌫️ EFECTO CRISTAL REAL */
+/* ===================================== */
+.hero,
+.site-section,
+.caja-clima {
+    backdrop-filter: blur(10px);
+}
+
+/* ===================================== */
+/* 🧠 EFECTO FOCO */
+/* ===================================== */
+main:hover .site-entry {
+    opacity: 0.6;
+}
+
+main .site-entry:hover {
+    opacity: 1;
+}
+
+/* ===================================== */
+/* ⚡ MICROINTERACCIONES */
+/* ===================================== */
+a, button {
+    transition: all 0.2s ease;
+}
+
+/* ===================================== */
+/* 🎯 SCROLL PRO */
+/* ===================================== */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(#4a90e2, #2f6ea5);
+    border-radius: 10px;
+}
+/* ===================================== */
+/* 🔹 RESET */
+/* ===================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===================================== */
+/* 🔹 BODY */
+/* ===================================== */
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #eef2f7, #f8fafc);
+    color: #1e293b;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===================================== */
+/* 🔹 NAVBAR */
+/* ===================================== */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(47, 110, 165, 0.9);
+    backdrop-filter: blur(10px);
+    padding: 15px 20px;
+    transition: 0.3s;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 18px;
+    color: white;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+.nav-links a:hover {
+    opacity: 0.7;
+}
+
+/* ===================================== */
+/* 🔹 MAIN */
+/* ===================================== */
+main {
+    flex: 1;
+    max-width: 1100px;
+    margin: auto;
+    padding: 40px 20px;
+}
+
+/* ===================================== */
+/* 🔹 HERO */
+/* ===================================== */
+.hero {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.hero h1 {
+    font-size: 2.8em;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    font-size: 1.1em;
+    opacity: 0.8;
+}
+
+/* BOTÓN */
+.cta {
+    margin-top: 25px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    background: #2f6ea5;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.cta:hover {
+    background: #4a90e2;
+    transform: translateY(-2px);
+}
+
+/* ===================================== */
+/* 🔹 INTRO */
+/* ===================================== */
+.intro {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.intro h2 {
+    margin-bottom: 15px;
+}
+
+.intro p {
+    max-width: 700px;
+    margin: 10px auto;
+    opacity: 0.8;
+}
+
+/* ===================================== */
+/* 🔹 SECCIÓN */
+/* ===================================== */
+.site-section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* GRID */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+/* ===================================== */
+/* 🔹 TARJETAS */
+/* ===================================== */
+.site-entry {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    transition: 0.3s;
+    text-align: center;
+    position: relative;
+}
+
+.site-entry:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* ICONO */
+.icon {
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+/* TEXTO */
+.site-entry h3 {
+    margin-bottom: 10px;
+}
+
+.site-entry p {
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+/* LINK */
+.btn-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+/* VER MÁS */
+.ver-mas {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #2f6ea5;
+    font-weight: 600;
+}
+
+/* ===================================== */
+/* 🔹 FRASE */
+/* ===================================== */
+.quote {
+    margin: 60px 0;
+    text-align: center;
+    font-style: italic;
+    opacity: 0.7;
+}
+
+/* ===================================== */
+/* 🔹 FOOTER */
+/* ===================================== */
+footer {
+    background: #2f6ea5;
+    color: white;
+    text-align: center;
+    padding: 25px;
+}
+
+.footer-content p {
+    margin: 5px 0;
+}
+
+/* ===================================== */
+/* 🔹 ANIMACIONES */
+/* ===================================== */
+.fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 0.6s ease;
+}
+
+.fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* DELAYS */
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+
+/* ===================================== */
+/* 🔹 RESPONSIVE */
+/* ===================================== */
+@media (max-width: 768px) {
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 2em;
+    }
+
+}
+/* ===================================== */
+/* 🔥 NIVEL PRO MAX ULTRA */
+/* ===================================== */
+
+/* VARIABLES PRO */
+:root {
+    --color-primary: #2f6ea5;
+    --color-secondary: #4a90e2;
+    --color-bg: #f8fafc;
+    --color-card: #ffffff;
+    --color-text: #1e293b;
+
+    --radius: 16px;
+    --transition: all 0.3s ease;
+}
+
+/* ===================================== */
+/* 🌟 SCROLL SUAVE GLOBAL */
+/* ===================================== */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ===================================== */
+/* 💎 NAVBAR ULTRA */
+/* ===================================== */
+.navbar {
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+/* efecto glass mejorado */
+.navbar {
+    backdrop-filter: blur(15px);
+}
+
+/* hover más fino */
+.nav-links a {
+    position: relative;
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0%;
+    height: 2px;
+    background: white;
+    transition: 0.3s;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* ===================================== */
+/* ✨ HERO PRO */
+/* ===================================== */
+.hero {
+    position: relative;
+    overflow: hidden;
+}
+
+/* brillo suave animado */
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(74,144,226,0.3), transparent);
+    top: -100px;
+    left: -100px;
+    animation: moverLuz 8s infinite alternate;
+}
+
+@keyframes moverLuz {
+    0% {transform: translate(0,0);}
+    100% {transform: translate(200px,200px);}
+}
+
+/* ===================================== */
+/* 🧠 GRID MÁS PRO */
+/* ===================================== */
+.grid {
+    gap: 30px;
+}
+
+/* ===================================== */
+/* 💳 TARJETAS NIVEL EMPRESA */
+/* ===================================== */
+.site-entry {
+    background: var(--color-card);
+    border-radius: var(--radius);
+    transition: var(--transition);
+    overflow: hidden;
+}
+
+/* borde premium */
+.site-entry::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius);
+    border: 1px solid rgba(0,0,0,0.05);
+    pointer-events: none;
+}
+
+/* efecto hover elegante */
+.site-entry:hover {
+    transform: translateY(-6px) scale(1.01);
+}
+
+/* sombra más real */
+.site-entry {
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.site-entry:hover {
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+}
+
+/* ===================================== */
+/* 🔘 EFECTO CLICK REAL */
+/* ===================================== */
+.site-entry:active {
+    transform: scale(0.97);
+}
+
+/* ===================================== */
+/* 🧩 ICONOS MÁS VIVOS */
+/* ===================================== */
+.icon {
+    transition: 0.3s;
+}
+
+.site-entry:hover .icon {
+    transform: scale(1.2) rotate(5deg);
+}
+
+/* ===================================== */
+/* ✍️ TEXTO MÁS PRO */
+/* ===================================== */
+h1, h2, h3 {
+    letter-spacing: -0.5px;
+}
+
+p {
+    line-height: 1.6;
+}
+
+/* ===================================== */
+/* 📍 EFECTO FOCO (PRO) */
+/* ===================================== */
+.grid:hover .site-entry {
+    opacity: 0.6;
+}
+
+.grid .site-entry:hover {
+    opacity: 1;
+}
+
+/* ===================================== */
+/* 🎯 BOTÓN MÁS PRO */
+/* ===================================== */
+.cta {
+    position: relative;
+    overflow: hidden;
+}
+
+/* efecto luz botón */
+.cta::after {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+    top: 0;
+    left: -100%;
+    transition: 0.5s;
+}
+
+.cta:hover::after {
+    left: 100%;
+}
+
+/* ===================================== */
+/* 🧠 FRASE */
+/* ===================================== */
+.quote {
+    font-size: 1.2em;
+}
+
+/* ===================================== */
+/* 🌫️ EFECTO PROFUNDIDAD GENERAL */
+/* ===================================== */
+.hero,
+.intro,
+.site-section {
+    transition: 0.3s;
+}
+
+/* ===================================== */
+/* ⚡ MICRO INTERACCIONES */
+/* ===================================== */
+a {
+    transition: var(--transition);
+}
+
+/* ===================================== */
+/* 🧭 SCROLLBAR PRO */
+/* ===================================== */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(var(--color-primary), var(--color-secondary));
+    border-radius: 10px;
+}
+
+/* ===================================== */
+/* 📱 RESPONSIVE PRO */
+/* ===================================== */
+@media (max-width: 768px) {
+
+    .navbar {
+        padding: 12px;
+    }
+
+    .nav-links a {
+        margin-left: 10px;
+    }
+
+    .hero {
+        padding: 60px 15px;
+    }
+
+    .cta {
+        width: 100%;
+    }
+
+}
+
+/* ===================================== */
+/* 🎬 ENTRADA GLOBAL */
+/* ===================================== */
+body {
+    animation: entradaGlobal 0.6s ease;
+}
+
+@keyframes entradaGlobal {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.scroll-indicator {
+    width: 30px;
+    height: 50px;
+    border: 2px solid #ccc;
+    border-radius: 20px;
+    margin: 30px auto 0;
+    position: relative;
+}
+
+.scroll-indicator::after {
+    content: "";
+    width: 6px;
+    height: 6px;
+    background: #2f6ea5;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 10px;
+    animation: scrollAnim 1.5s infinite;
+}
+
+@keyframes scrollAnim {
+    0% { opacity: 0; top: 10px; }
+    50% { opacity: 1; }
+    100% { opacity: 0; top: 30px; }
+}
+/* NAVBAR BASE */
+/* NAVBAR GLOBAL */
+.navbar {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    background: linear-gradient(135deg, #2f6ea5, #1e4f7a);
+    padding: 15px 0;
+
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+/* CONTENEDOR */
+.nav-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* LOGO */
+.logo {
+    font-weight: 700;
+    font-size: 18px;
+    color: white;
+}
+
+/* LINKS */
+.nav-links a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: rgba(255,255,255,0.85);
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+/* HOVER */
+.nav-links a:hover {
+    color: white;
+}
+.nav-links a.active {
+    border-bottom: 2px solid white;
+    padding-bottom: 3px;
+}
+/* ========================================= */
+/* 🔥 PRO UPGRADE (AÑADIR AL FINAL DEL CSS) */
+/* ========================================= */
+
+/* MEJORAS GENERALES */
+body {
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: #fff;
+}
+
+/* NAVBAR MÁS PRO */
+.navbar {
+    backdrop-filter: blur(10px);
+    background: rgba(0,0,0,0.4);
+    transition: 0.3s;
+}
+
+/* CAJA CLIMA MEJORADA */
+.caja-clima {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    transition: 0.3s;
+}
+
+/* TEMPERATURA ANIMADA */
+.temp.animate {
+    transform: scale(1.15);
+}
+
+/* ICONO CLIMA */
+#icono-clima {
+    font-size: 45px;
+    margin: 10px 0;
+}
+
+/* TARJETAS PRONÓSTICO */
+.card-dia {
+    transition: 0.3s;
+}
+
+.card-dia:hover {
+    transform: translateY(-5px) scale(1.05);
+}
+
+/* BOTÓN PRO */
+.btn-reset {
+    background: linear-gradient(45deg, #4facfe, #00f2fe);
+    border-radius: 30px;
+    transition: 0.3s;
+}
+
+.btn-reset:hover {
+    transform: scale(1.05);
+}
+
+/* LOADING SPINNER */
+#cargando::after {
+    content: "";
+    display: block;
+    width: 25px;
+    height: 25px;
+    border: 3px solid #ccc;
+    border-top: 3px solid #4facfe;
+    border-radius: 50%;
+    margin: 10px auto;
+    animation: spin 1s linear infinite;
+}
+
+/* ANIMACIÓN */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+/* ========================================= */
+/* 🌤️ ESTILO EXCLUSIVO TIEMPO */
+/* ========================================= */
+
+.pagina-tiempo {
+    background: linear-gradient(180deg, #e0f2ff, #ffffff);
+    color: #1a1a1a;
+}
+
+/* NAVBAR MÁS CLARA */
+.pagina-tiempo .navbar {
+    background: linear-gradient(135deg, #4facfe, #00c6ff);
+}
+
+/* CAJA CLIMA CLARA */
+.pagina-tiempo .caja-clima {
+    background: white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* TARJETAS */
+.pagina-tiempo .card-dia {
+    background: #f1f5f9;
+}
+
+.pagina-tiempo .card-dia:hover {
+    background: #e2e8f0;
+}
+
+/* ACTIVO */
+.pagina-tiempo .card-dia.active {
+    background: #4facfe;
+    color: white;
+}
+
+/* BOTÓN */
+.pagina-tiempo .btn-reset {
+    background: #4facfe;
+}
+/* ===================================== */
+/* 🌑 FIX FINAL DEFINITIVO (OSCURO PRO) */
+/* ===================================== */
+
+/* FORZAR FONDO GLOBAL */
+body {
+    background: radial-gradient(circle at top, #1e3a5f 0%, #0f172a 50%, #020617 100%) !important;
+    color: #e2e8f0 !important;
+}
+
+/* NAVBAR IGUAL QUE INDEX */
+.navbar {
+    background: linear-gradient(135deg, #1e3a5f, #0f172a) !important;
+}
+
+/* TEXTOS */
+h1, h2, h3, p, span {
+    color: inherit;
+}
+
+/* HERO Y SECCIONES CLARAS SOBRE FONDO OSCURO */
+.hero,
+.intro,
+.site-section {
+    background: rgba(255,255,255,0.92) !important;
+    color: #1e293b !important;
+}
+
+/* TARJETAS */
+.site-entry {
+    background: white !important;
+    color: #1e293b !important;
+}
+
+/* CLIMA (MODO OSCURO REAL) */
+.caja-clima {
+    background: rgba(15, 23, 42, 0.95) !important;
+    color: #e2e8f0 !important;
+}
+
+/* TEMPERATURA */
+
+
+/* DETALLES CLIMA */
+.dato {
+    background: rgba(30, 41, 59, 0.7) !important;
+}
+
+/* PRONÓSTICO */
+.card-dia {
+    background: rgba(30, 41, 59, 0.7) !important;
+}
+
+.card-dia.active {
+    background: linear-gradient(135deg, #0ea5e9, #0284c7) !important;
+}
+
+/* BOTÓN */
+.btn-reset {
+    background: linear-gradient(135deg, #0ea5e9, #0284c7) !important;
+}
+
+/* FOOTER */
+footer {
+    background: #020617 !important;
+    color: rgba(255,255,255,0.7) !important;
+}
+/* SOLO QUITAR FONDO BLANCO DE INTRO */
+.intro {
+    background: transparent !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    border-radius: 0 !important;
+}
+
+/* TEXTO EN MODO OSCURO */
+.intro h2 {
+    color: #f1f5f9 !important;
+}
+
+.intro p {
+    color: rgba(226,232,240,0.85) !important;
 }

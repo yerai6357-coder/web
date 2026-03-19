@@ -5,28 +5,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Tiempo - L'Ametlla de Mar</title>
-<link rel="icon" href="imagen/OIP (1).jpg" type="image/jpeg">
+<link rel="icon" href="imagen/OIP (1).jpg">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="pro.css">
 </head>
 
-<body>
-
+<body class="pagina-tiempo">
+<!-- NAVBAR -->
 <nav class="navbar">
-<a href="index.html">Inicio</a>
-<a href="tiempo.html">Tiempo</a>
-</nav>
+    <div class="nav-container">
 
+        <div class="logo">🌍 L'Ametlla de Mar</div>
+
+        <div class="nav-links">
+            <a href="index.html">Inicio</a>
+            <a href="tiempo.html" class="active">Tiempo</a>
+        </div>
+
+    </div>
+</nav>
 <main>
 
 <div class="caja-clima">
 
 <p class="ciudad">L'Ametlla de Mar</p>
 
-<button onclick="mostrarDia(0)" class="btn-reset">
-Volver a hoy
-</button>
+<button id="btn-hoy" class="btn-reset">Hoy</button>
 
-<div id="cargando">Cargando datos reales...</div>
+<div id="cargando">Cargando datos...</div>
 
 <div id="contenido-clima" style="display:none;">
 
@@ -55,103 +61,11 @@ Volver a hoy
 </main>
 
 <footer>
-<p>&copy; 2026 Yerai - Proyecto sobre Sitios Históricos de L'Ametlla de Mar.</p>
+<p>© 2026 Yerai - Proyecto sobre Sitios Históricos de L'Ametlla de Mar. Todos los derechos reservados.</p>
 </footer>
 
-<script>
-
-let datosGlobales = null;
-
-async function actualizarDatos() {
-
-const url = "https://api.open-meteo.com/v1/forecast?latitude=40.88&longitude=0.80&daily=temperature_2m_max,temperature_2m_min,windspeed_10m_max&timezone=auto";
-
-try {
-
-const respuesta = await fetch(url);
-if (!respuesta.ok) throw new Error(`HTTP ${respuesta.status}`);
-
-const datos = await respuesta.json();
-datosGlobales = datos;
-
-/* MOSTRAR HOY */
-mostrarDia(0);
-
-/* CREAR PRONÓSTICO */
-let html = "<h3>Próximos 7 días</h3><div class='pronostico-grid'>";
-
-const dias = datos.daily.time;
-const max = datos.daily.temperature_2m_max;
-const min = datos.daily.temperature_2m_min;
-
-const diasSemana = ["Dom","Lun","Mar","Mié","Jue","Vie","Sáb"];
-
-for (let i = 0; i < 7; i++) {
-
-    const fecha = new Date(dias[i]);
-    const nombreDia = diasSemana[fecha.getDay()];
-
-    html += `
-    <div class="card-dia" onclick="mostrarDia(${i}, this)">
-        <p class="dia-nombre">${nombreDia}</p>
-        <p class="temp-max">${Math.round(max[i])}°</p>
-        <p class="temp-min">${Math.round(min[i])}°</p>
-    </div>`;
-}
-
-html += "</div>";
-
-document.getElementById("pronostico").innerHTML = html;
-
-/* MOSTRAR CONTENIDO */
-document.getElementById('cargando').style.display = 'none';
-document.getElementById('contenido-clima').style.display = 'block';
-
-} catch (error) {
-
-document.getElementById('cargando').innerText = "Error al cargar el clima";
-console.error("Error:", error);
-
-}
-
-}
-
-/* CAMBIAR DÍA */
-function mostrarDia(index, elemento) {
-
-if (!datosGlobales) return;
-
-const datos = datosGlobales;
-
-const dias = datos.daily.time;
-const max = datos.daily.temperature_2m_max;
-const min = datos.daily.temperature_2m_min;
-const viento = datos.daily.windspeed_10m_max;
-
-const diasSemana = ["Dom","Lun","Mar","Mié","Jue","Vie","Sáb"];
-
-const fecha = new Date(dias[index]);
-const nombreDia = diasSemana[fecha.getDay()];
-
-/* ACTUALIZAR ARRIBA */
-document.querySelector('.ciudad').innerText = "L'Ametlla de Mar - " + nombreDia;
-
-document.getElementById('valor-temp').innerText = `${Math.round(max[index])}°C`;
-document.getElementById('valor-viento').innerText = `${Math.round(viento[index])} km/h`;
-document.getElementById('valor-sensacion').innerText = `${Math.round(max[index])}°C`;
-
-/* RESALTAR TARJETA */
-document.querySelectorAll(".card-dia").forEach(c => c.classList.remove("active"));
-if (elemento) elemento.classList.add("active");
-
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-actualizarDatos();
-setInterval(actualizarDatos, 10 * 60 * 1000);
-});
-
-</script>
+<!-- JS EXTERNO -->
+<script src="clima.js"></script>
 
 </body>
 </html>
