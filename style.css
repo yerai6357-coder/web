@@ -35,6 +35,7 @@ body {
     font-weight: bold;
     font-size: 16px;
     transition: background 0.3s ease, transform 0.2s ease;
+    display: inline-block;
 }
 
 .navbar a:hover {
@@ -107,115 +108,19 @@ h1 {
 
 /* CLIMA */
 .caja-clima {
-    max-width: 700px;
-    width: 90%;
+    max-width: 400px;
     margin: 50px auto;
-    padding: 40px;
+    padding: 30px;
     border-top: 5px solid #4a90e2;
-    border-radius: 15px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
 }
 
-/* CIUDAD */
-.ciudad {
-    text-align: center;
-    font-size: 22px;
-    font-weight: bold;
-}
-
-/* TEMPERATURA */
 .temp {
     font-size: 4em;
     font-weight: bold;
-    text-align: center;
-}
-
-/* DETALLES */
-.detalles {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 15px;
-}
-
-.dato {
-    text-align: center;
-}
-
-.etiqueta {
-    display: block;
-    font-size: 14px;
-    opacity: 0.7;
-}
-
-/* BOTÓN RESET */
-.btn-reset {
-    display: block;
-    margin: 10px auto 25px auto;
-    padding: 10px 18px;
-    border: none;
-    background: #2f6ea5;
-    color: white;
-    border-radius: 20px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.btn-reset:hover {
-    background: #4a90e2;
-    transform: scale(1.05);
-}
-
-/* PRONÓSTICO */
-#pronostico {
-    margin-top: 20px;
-}
-
-.pronostico-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 12px;
-    margin-top: 20px;
-}
-
-.card-dia {
-    background: linear-gradient(135deg, #4a90e2, #2f6ea5);
-    color: white;
-    border-radius: 15px;
-    padding: 15px 10px;
-    text-align: center;
-    cursor: pointer;
-    transition: 0.2s ease;
-    box-sizing: border-box; /* 🔥 CLAVE */
-}
-
-.card-dia:hover {
-    transform: translateY(-5px);
-}
-
-.card-dia.active {
-    outline: 2px solid white;
-    box-shadow: 0 0 15px rgba(255,255,255,0.9);
-    background: linear-gradient(135deg, #5aa0f2, #3578c9);
-}
-
-.dia-nombre {
-    font-weight: bold;
-    margin-bottom: 8px;
-}
-
-.temp-max {
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.temp-min {
-    font-size: 14px;
-    opacity: 0.8;
 }
 
 /* BOTONES DE ENLACE */
-.btn-link {
+.btn-link{
     display: block;
     width: 100%;
     padding: 15px;
@@ -225,18 +130,32 @@ h1 {
     transition: background 0.3s ease;
 }
 
-.btn-link h3 {
+.btn-link h3{
     margin: 0;
     color: #333;
 }
 
-.btn-link:hover {
-    background-color: #4a90e2;
-    color: white;
+.btn-link:hover{
+    background-color:#4a90e2;
+    color:white;
 }
 
-.btn-link:hover h3 {
-    color: white;
+.btn-link:hover h3{
+    color:white;
+}
+
+/* CAJA DONACIÓN */
+.donacion-box{
+    text-align:center;
+    margin-top:25px;
+    padding:25px;
+    background:#ffffff;
+    border-radius:12px;
+    max-width:420px;
+    margin-left:auto;
+    margin-right:auto;
+    box-shadow:0 4px 15px rgba(0,0,0,0.1);
+    border:2px solid #e6e6e6;
 }
 
 /* FOOTER */
@@ -246,12 +165,6 @@ footer {
     background: #2f6ea5;
     color: white;
     margin-top: 40px;
-}
-
-/* TITULOS */
-.site-section h2 {
-    text-align: center;
-    margin-bottom: 20px;
 }
 
 /* RESPONSIVE */
@@ -271,55 +184,30 @@ footer {
         padding: 20px;
     }
 
-    .detalles {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-}
-/* LOGIN */
-/* LOGIN PRO */
-.login-container {
-    max-width: 400px;
-    margin: 40px auto;
-    text-align: center;
-    background: white;
-    padding: 25px;
-    border-radius: 20px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
 }
 
-.user-info img {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    margin-bottom: 10px;
-    display: none;
+.donacion-inline{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:12px;
+margin-top:20px;
+font-size:15px;
 }
 
-.login-buttons button {
-    width: 100%;
-    padding: 12px;
-    border: none;
-    border-radius: 10px;
-    background: #4285F4;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
+.btn-donar{
+background:#4a90e2;
+color:white;
+border:none;
+padding:10px 18px;
+border-radius:25px;
+cursor:pointer;
+font-weight:bold;
+font-size:14px;
+transition:all 0.3s ease;
 }
 
-.login-buttons button:hover {
-    background: #3367d6;
-}
-
-.logout-btn {
-    margin-top: 15px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 10px;
-    background: #e53935;
-    color: white;
-    cursor: pointer;
-    display: none;
+.btn-donar:hover{
+background:#2f6ea5;
+transform:translateY(-2px);
 }
