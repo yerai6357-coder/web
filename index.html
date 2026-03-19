@@ -4,22 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sitios Históricos - L'Ametlla de Mar</title>
-<link rel="icon" href="imagen/OIP (1).jpg" type="image/jpeg">
+
+<link rel="icon" href="imagen/OIP (1).jpg">
 <link rel="stylesheet" href="style.css">
-</head>
-<style>
-
-
-
-.site-section h2{
-    text-align: center;
-}
-
-#importancia-conservacion + p{
-    text-align: center;
-}
-</style>
-
 </head>
 
 <body>
@@ -30,70 +17,114 @@
 </nav>
 
 <main>
-<section class="hero" aria-labelledby="hero-title">
-<h1 id="hero-title">Sitios Históricos de L'Ametlla de Mar</h1>
-<p>Descubre los sitios históricos que aún se mantienen en pie en L'Ametlla de Mar y su legado cultural y arquitectónico.</p>
-</section>
-</section>
-<section class="site-section" aria-labelledby="sitios-historicos">
 
-<h2 id="sitios-historicos">Sitios históricos</h2>
+<!-- LOGIN PRO -->
+<div class="login-container">
 
-<article class="site-entry">
-<a href="Castillo de Sant Jordi.html" class="btn-link">
-<h3>Castillo de Sant Jordi</h3>
-</a>
-</article>
+<div class="user-info" id="userInfo">
+<img id="userFoto" src="" alt="">
+<p id="usuario">No has iniciado sesión</p>
+</div>
 
-<article class="site-entry">
-<a href="Església de la Purificació de la Mare de Déu.html" class="btn-link">
-<h3>Església de la Purificació de la Mare de Déu</h3>
-</a>
-</article>
+<div class="login-buttons" id="loginButtons">
+<button onclick="loginGoogle()">Continuar con Google</button>
+</div>
 
-<article class="site-entry">
-<a href="Plaça Joan Miró.html" class="btn-link">
-<h3>Plaça Joan Miró</h3>
-</a>
-</article>
+<button class="logout-btn" id="logoutBtn" onclick="logout()">Cerrar sesión</button>
 
-<article class="site-entry">
-<a href="Plaça del Canó.html" class="btn-link">
-<h3>Plaça del Canó</h3>
-</a>
-</article>
+</div>
 
-<article class="site-entry">
-<a href="Resumen de L'Ametlla de Mar.html" class="btn-link">
-<h3>Resumen de L'Ametlla de Mar</h3>
-</a>
-
-
-
-
-
-</article>
+<section class="hero">
+<h1>Sitios Históricos de L'Ametlla de Mar</h1>
+<p>Descubre los sitios históricos que aún se mantienen en pie.</p>
 </section>
 
-<section class="site-section" aria-labelledby="importancia-conservacion">
+<section class="site-section">
+<h2>Sitios históricos</h2>
 
-<h2 id="importancia-conservacion">Importancia y conservación</h2>
+<article class="site-entry">
+<a href="Castillo de Sant Jordi.html" class="btn-link"><h3>Castillo de Sant Jordi</h3></a>
+</article>
 
-<p>Estos sitios históricos narran el pasado de L'Ametlla de Mar y son testimonios vivos que fomentan el turismo cultural y la educación.</p>
+<article class="site-entry">
+<a href="Església de la Purificació de la Mare de Déu.html" class="btn-link"><h3>Església de la Purificació</h3></a>
+</article>
+
+<article class="site-entry">
+<a href="Plaça Joan Miró.html" class="btn-link"><h3>Plaça Joan Miró</h3></a>
+</article>
+
+<article class="site-entry">
+<a href="Plaça del Canó.html" class="btn-link"><h3>Plaça del Canó</h3></a>
+</article>
 
 </section>
 
 </main>
 
 <footer>
-<p>&copy; 2026 Yerai - Proyecto sobre Sitios Históricos de L'Ametlla de Mar.</p>
-
+<p>&copy; 2026 Yerai</p>
 </footer>
 
+<script type="module">
 
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } 
+from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
 
-</div>
+const firebaseConfig = {
+  apiKey: "AIzaSyDm1WQMKrvH9O1tltJOhUP4xZVvhNjwH3s",
+  authDomain: "historialametlla.firebaseapp.com",
+  projectId: "historialametlla",
+  storageBucket: "historialametlla.firebasestorage.app",
+  messagingSenderId: "768005022848",
+  appId: "1:768005022848:web:da640ab9ad3b2b7b723265"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+
+/* LOGIN */
+window.loginGoogle = async () => {
+    try {
+        await signInWithPopup(auth, provider);
+    } catch (error) {
+        alert("Error al iniciar sesión");
+        console.error(error);
+    }
+}
+
+/* LOGOUT */
+window.logout = () => signOut(auth);
+
+/* UI PRO */
+onAuthStateChanged(auth, (user) => {
+
+    const usuario = document.getElementById("usuario");
+    const foto = document.getElementById("userFoto");
+    const loginButtons = document.getElementById("loginButtons");
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    if (user) {
+        usuario.textContent = user.displayName;
+        foto.src = user.photoURL;
+        foto.style.display = "block";
+
+        loginButtons.style.display = "none";
+        logoutBtn.style.display = "inline-block";
+
+    } else {
+        usuario.textContent = "No has iniciado sesión";
+        foto.style.display = "none";
+
+        loginButtons.style.display = "block";
+        logoutBtn.style.display = "none";
+    }
+
+});
+
+</script>
 
 </body>
 </html>
-
