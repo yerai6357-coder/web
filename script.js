@@ -102,3 +102,67 @@ document.getElementById('formReporte').addEventListener('submit', function(event
     // Abre Gmail en una nueva pestaña listo para enviar
     window.open(urlGmail, '_blank');
 });
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const formulario = document.getElementById('formReporte');
+    if (formulario) {
+        formulario.addEventListener('submit', function(event) {
+            // Evita que la página intente recargarse sola con el "?"
+            event.preventDefault();
+
+            const correoDestino = "atencion.al.cliente.juegos@gmail.com";
+            const sistemaOperativo = document.getElementById('Sistema_Operativo').value;
+            const descripcionError = document.getElementById('Descripcion_del_Error').value;
+
+            // Arma los textos de forma dinámica
+            const asunto = `Reporte de Fallo - Juegos (${sistemaOperativo})`;
+            const cuerpoMensaje = `Sistema Operativo: ${sistemaOperativo}\n\nDescripción del Error o Problema:\n${descripcionError}`;
+
+            const asuntoCodificado = encodeURIComponent(asunto);
+            const cuerpoCodificado = encodeURIComponent(cuerpoMensaje);
+
+            // Abre Gmail web en una pestaña nueva con todo listo
+            const urlGmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${correoDestino}&su=${asuntoCodificado}&body=${cuerpoCodificado}`;
+            window.open(urlGmail, '_blank');
+        });
+    }
+});
+
+
+
+
+// ---- LÓGICA DEL FORMULARIO DE SOPORTE CORREGIDA ----
+document.addEventListener("DOMContentLoaded", function() {
+    const formulario = document.getElementById('formReporte');
+    if (formulario) {
+        formulario.addEventListener('submit', function(event) {
+            // Evita que la página haga cosas raras o se recargue con un "?"
+            event.preventDefault();
+
+            const correoDestino = "atencion.al.cliente.juegos@gmail.com";
+            
+            // CAPTURA DINÁMICA: Recogemos exactamente lo que el usuario ha seleccionado
+            const juegoSeleccionado = document.getElementById('Juego_Fallo').value;
+            const sistemaOperativo = document.getElementById('Sistema_Operativo').value;
+            const descripcionError = document.getElementById('Descripcion_del_Error').value;
+
+            // SOLUCIÓN AL FALLO: Construimos el asunto con las variables reales
+            const asunto = `Reporte de Fallo - ${juegoSeleccionado} (${sistemaOperativo})`;
+            const cuerpoMensaje = `Juego afectado: ${juegoSeleccionado}\nSistema Operativo: ${sistemaOperativo}\n\nDescripción del Error:\n${descripcionError}`;
+
+            // Codificamos correctamente para que Gmail entienda los espacios y saltos de línea
+            const asuntoCodificado = encodeURIComponent(asunto);
+            const cuerpoCodificado = encodeURIComponent(cuerpoMensaje);
+
+            // Generamos la URL limpia para abrir en Gmail
+            const urlGmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${correoDestino}&su=${asuntoCodificado}&body=${cuerpoCodificado}`;
+            
+            // Abre la pestaña de redacción de Gmail
+            window.open(urlGmail, '_blank');
+        });
+    }
+});

@@ -2029,3 +2029,194 @@ footer {
 .soporte-btn:active {
     transform: scale(0.98);
 }
+
+
+
+
+
+
+/* Centrado del bloque del formulario alineado */
+#formReporte {
+    display: block;
+    max-width: 600px;
+    margin: 30px auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Caja del formulario translúcida estilo juego moderno */
+.soporte-fieldset {
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    padding: 25px;
+    background-color: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(8px);
+    font-family: 'Inter', sans-serif;
+    box-sizing: border-box;
+}
+
+.soporte-fieldset legend {
+    padding: 0 10px;
+    color: #ffffff;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.soporte-fieldset label strong {
+    color: #e2e8f0;
+}
+
+/* Selector desplegable integrado */
+.soporte-select {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    font-size: 0.95rem;
+    background-color: #0d1527;
+    color: #ffffff;
+    box-sizing: border-box;
+}
+
+.soporte-select option {
+    background-color: #0d1527;
+    color: #ffffff;
+}
+
+/* Área de texto integrada */
+.soporte-textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    background-color: #0d1527;
+    color: #ffffff;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.soporte-textarea::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* Botón de reporte de Gmail */
+.soporte-btn {
+    background-color: #e53e3e;
+    color: white;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 15px;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.soporte-btn:hover {
+    background-color: #c53030;
+}
+
+.soporte-btn:active {
+    transform: scale(0.98);
+}
+
+
+
+
+
+
+
+/* ---- ESTILOS DEL FORMULARIO DE SOPORTE ---- */
+#formReporte {
+    display: block;
+    max-width: 600px;
+    margin: 30px auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.soporte-fieldset {
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    padding: 25px;
+    background-color: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(8px);
+    font-family: 'Inter', sans-serif;
+    box-sizing: border-box;
+}
+
+.soporte-fieldset legend {
+    padding: 0 10px;
+    color: #ffffff;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.soporte-fieldset label strong {
+    color: #e2e8f0;
+}
+
+.soporte-select {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    font-size: 0.95rem;
+    background-color: #0d1527;
+    color: #ffffff;
+    box-sizing: border-box;
+}
+
+.soporte-select option {
+    background-color: #0d1527;
+    color: #ffffff;
+}
+
+.soporte-textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    background-color: #0d1527;
+    color: #ffffff;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.soporte-textarea::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.soporte-btn {
+    background-color: #e53e3e;
+    color: white;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 15px;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.soporte-btn:hover {
+    background-color: #c53030;
+}
+
+.soporte-btn:active {
+    transform: scale(0.98);
+}
