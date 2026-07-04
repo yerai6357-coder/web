@@ -1811,3 +1811,221 @@ footer {
 .intro p {
     color: rgba(226,232,240,0.85) !important;
 }
+/* Esto centra el botón en tu página y evita que se estire */
+.contenedor-boton {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 20px 0; /* Da un poco de espacio arriba y abajo */
+}
+
+/* El diseño del botón pro */
+.boton-pro {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;        /* ¡LA MAGIA! Evita que se estire por toda la pantalla */
+  background-color: #18181b; 
+  color: #fafafa;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border: 1px solid #3f3f46;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  transition: all 0.15s ease-in-out;
+}
+
+.boton-pro:hover {
+  background-color: #27272a;
+  border-color: #52525b;
+}
+
+.boton-pro:active {
+  transform: scale(0.97);
+}
+
+
+
+
+/* Estilos modernos e integrados perfectamente con tu fondo oscuro */
+.soporte-fieldset {
+    border: 1px solid rgba(255, 255, 255, 0.15); /* Borde sutil y semitransparente */
+    border-radius: 12px;
+    padding: 25px;
+    background-color: rgba(255, 255, 255, 0.03); /* Fondo oscuro translúcido que toma el color de tu web */
+    backdrop-filter: blur(8px); /* Efecto cristal pro moderno */
+    font-family: 'Inter', sans-serif;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.soporte-fieldset legend {
+    padding: 0 10px;
+    color: #ffffff; /* Texto blanco impecable */
+    font-size: 1.15em;
+    font-weight: 600;
+}
+
+/* Estilo para los textos guía superiores dentro del formulario */
+.soporte-fieldset label strong {
+    color: #e2e8f0; /* Blanco grisáceo suave para que resalte sin molestar */
+}
+
+/* Desplegable estilizado */
+.soporte-select {
+    width: 100%;
+    max-width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    font-size: 0.95rem;
+    background-color: #0d1527; /* Fondo azul oscuro a juego con tu web */
+    color: #ffffff; /* Texto de las opciones en blanco */
+    box-sizing: border-box;
+}
+
+/* Cuadro de texto estilizado */
+.soporte-textarea {
+    width: 100%;
+    max-width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    background-color: #0d1527; /* Mismo fondo oscuro a juego */
+    color: #ffffff; /* Tu texto al escribir saldrá en blanco nítido */
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+/* Cambiar el color del marcador de posición (placeholder) */
+.soporte-textarea::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* Botón Rojo Estilo Gmail pero con un acabado más Premium */
+.soporte-btn {
+    background-color: #e53e3e; 
+    color: white;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%; /* Ahora ocupa el ancho completo para verse simétrico */
+    margin-top: 15px;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.soporte-btn:hover {
+    background-color: #c53030;
+}
+
+.soporte-btn:active {
+    transform: scale(0.98); /* Pequeño efecto de hundido al pulsar */
+}
+
+
+
+
+
+
+/* Centrado del bloque del formulario alineado */
+#formReporte {
+    display: block;
+    max-width: 600px;
+    margin: 30px auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Caja del formulario translúcida (estilo cristal moderno) */
+.soporte-fieldset {
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    padding: 25px;
+    background-color: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(8px);
+    font-family: 'Inter', sans-serif;
+    box-sizing: border-box;
+}
+
+.soporte-fieldset legend {
+    padding: 0 10px;
+    color: #ffffff;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.soporte-fieldset label strong {
+    color: #e2e8f0;
+}
+
+/* Selector desplegable integrado */
+.soporte-select {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    font-size: 0.95rem;
+    background-color: #0d1527;
+    color: #ffffff;
+    box-sizing: border-box;
+}
+
+.soporte-select option {
+    background-color: #0d1527;
+    color: #ffffff;
+}
+
+/* Área de texto integrada */
+.soporte-textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    background-color: #0d1527;
+    color: #ffffff;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.soporte-textarea::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* Botón de reporte de Gmail */
+.soporte-btn {
+    background-color: #e53e3e;
+    color: white;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 15px;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.soporte-btn:hover {
+    background-color: #c53030;
+}
+
+.soporte-btn:active {
+    transform: scale(0.98);
+}

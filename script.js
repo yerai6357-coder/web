@@ -1,3 +1,18 @@
+document.getElementById('btnInstalar').addEventListener('click', function() {
+  
+  
+  const urlDescarga = `https://drive.google.com/drive/folders/17FOy58XzodQpgjmjoDSfENX5v9AhUE1r?usp=sharing`;
+  
+  const enlaceFantasma = document.createElement('a');
+  enlaceFantasma.href = urlDescarga;
+  enlaceFantasma.setAttribute('download', '');
+  
+  document.body.appendChild(enlaceFantasma);
+  enlaceFantasma.click();
+  document.body.removeChild(enlaceFantasma);
+});
+
+
 /* ============================= */
 /* 🔥 ANIMACIÓN SCROLL */
 /* ============================= */
@@ -64,3 +79,26 @@ if (indicador) {
         });
     });
 }
+document.getElementById('formReporte').addEventListener('submit', function(event) {
+    // Evita que la página intente recargarse sola
+    event.preventDefault();
+
+    // Captura los valores reales que el usuario puso
+    const correoDestino = "atencion.al.cliente.juegos@gmail.com";
+    const sistemaOperativo = document.getElementById('Sistema_Operativo').value;
+    const descripcionError = document.getElementById('Descripcion_del_Error').value;
+
+    // Crea el Asunto dinámico y el Cuerpo del mensaje ordenado
+    const asunto = `Reporte de Fallo - Schedule 1 (${sistemaOperativo})`;
+    const cuerpoMensaje = `Sistema Operativo: ${sistemaOperativo}\n\nDescripción del Error:\n${descripcionError}`;
+
+    // Codifica los textos para que la URL del navegador los entienda sin romperse
+    const asuntoCodificado = encodeURIComponent(asunto);
+    const cuerpoCodificado = encodeURIComponent(cuerpoMensaje);
+
+    // Genera el enlace directo a la interfaz web de Gmail
+    const urlGmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${correoDestino}&su=${asuntoCodificado}&body=${cuerpoCodificado}`;
+
+    // Abre Gmail en una nueva pestaña listo para enviar
+    window.open(urlGmail, '_blank');
+});
